@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deploy
+  namespace: cc-backend
+  labels:
+    app: tomcat
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: tomcat
+
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      imagePullSecrets:
+        - name: ecr-regcred
+      # 1) Pod Anti Affinity
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: tomcat
+                topologyKey: "kubernetes.io/hostname"
+
+      # 2) Spread Constraints
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: tomcat
+
+      containers:
+        - name: check-tomcat
+          image: 088784023539.dkr.ecr.ap-northeast-2.amazonaws.com/check-tomcat:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "300m"      # 최소 보장 0.1 vCPU
+              memory: "256Mi"
+            limits:
+              cpu: "500m"      # 최대 0.25 vCPU
+              memory: "512Mi"
+          env:
+            - name: DB_HOST
+              value: "10.0.2.50"     # MySQL VM IP -> VIPIP
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: "attendance"
+            - name: DB_USER
+              value: "attendance"     # 실제 만든 유저명
+            - name: DB_PASS
+              value: "1234"
+
+          # "/" 기본 페이지 헬스 체크
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
