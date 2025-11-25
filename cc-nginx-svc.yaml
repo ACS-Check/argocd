@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cc-nginx-svc
+  namespace: cc-frontend
+  labels:
+    app: nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - port: 80        # Service Port
+      targetPort: 80  # Pod의 containerPort
+      # nodePort: 30100 # NodePort 지정 (30000-32767 범위 내)

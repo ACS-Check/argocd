@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cc-nginx-conf
+  namespace: cc-frontend
+data:
+  default.conf: |
+    # Tomcat Service 로 프록시할 upstream
+    upstream check_tomcat_backend {
+        server server cc-tomcat-svc.cc-backend.svc.cluster.local:8080;
+    }
+
+    server {
+        listen 80;
+
+        # 모든 요청을 톰캣으로 프록시 (3-Tier 구조)
+        location / {
+            proxy_pass http://check_tomcat_backend;
+
+            # 원래 요청 정보가 Tomcat에 잘 전달되도록 헤더 설정
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
