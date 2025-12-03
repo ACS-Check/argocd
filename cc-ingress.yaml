@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: cc-ginx-svc
+                name: cc-nginx-svc
                 port:
                   number: 80

@@ -7,7 +7,7 @@ data:
   default.conf: |
     # Tomcat Service 로 프록시할 upstream
     upstream check_tomcat_backend {
-        server server cc-tomcat-svc.cc-backend.svc.cluster.local:8080;
+        server cc-tomcat-svc.cc-backend.svc.cluster.local:8080;
     }
 
     server {

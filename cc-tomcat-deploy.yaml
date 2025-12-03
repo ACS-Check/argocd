@@ -61,7 +61,7 @@ spec:
               memory: "512Mi"
           env:
             - name: DB_HOST
-              value: "10.0.2.50"     # MySQL VM IP -> VIPIP
+              value: "10.0.3.50"     # MySQL VM IP -> VIPIP
             - name: DB_PORT
               value: "3306"
             - name: DB_NAME
