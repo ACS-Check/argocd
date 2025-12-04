@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: cc-tomcat-deploy
   minReplicas: 3           # 기본 3개
-  maxReplicas: 10          # 최대 10개까지
+  maxReplicas: 8          # 최대 10개까지
   metrics:
     - type: Resource
       resource:

@@ -58,10 +58,10 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: "200m"      # 최소 보장 0.1 vCPU
+              cpu: "100m"      # 최소 보장 0.1 vCPU
               memory: "256Mi"
             limits:
-              cpu: "200m"      # 최대 0.5 vCPU
+              cpu: "100m"      # 최대 0.5 vCPU
               memory: "256Mi"
           
           # ConfigMap으로부터 Nginx 설정 주입
