@@ -59,17 +59,17 @@ spec:
             limits:
               cpu: "300m"      # 최대 0.25 vCPU
               memory: "512Mi"
-          env:
+          env:         
             - name: DB_HOST
-              value: "10.0.3.50"     # MySQL VM IP -> VIPIP
+              value: "10.0.3.50"     # ProxySQL Frontend(MySQL) 포트
             - name: DB_PORT
-              value: "3306"
+              value: "3306"          # ProxySQL에서 클라이언트용 MySQL 포트
             - name: DB_NAME
               value: "attendance"
             - name: DB_USER
-              value: "attendance"     # 실제 만든 유저명
+              value: "appuser"       # ProxySQL + MySQL 모두에 생성해둔 App 전용 계정
             - name: DB_PASS
-              value: "1234"
+              value: "app1234!"      # App 전용 계정 비밀번호
 
           # "/" 기본 페이지 헬스 체크
           readinessProbe:
