@@ -54,11 +54,11 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: "300m"      # 최소 보장 0.1 vCPU
-              memory: "512Mi"
+              cpu: "250m"      # 최소 보장 0.1 vCPU
+              memory: "600Mi"
             limits:
-              cpu: "300m"      # 최대 0.25 vCPU
-              memory: "512Mi"
+              cpu: "250m"      # 최대 0.25 vCPU
+              memory: "600Mi"
           env:
             - name: DB_HOST
               value: "10.0.3.50"     # MySQL VM IP -> VIPIP
@@ -85,6 +85,7 @@ spec:
               port: 8080
             initialDelaySeconds: 70
             periodSeconds: 35
+
 
 
 
