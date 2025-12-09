@@ -59,17 +59,17 @@ spec:
             limits:
               cpu: "300m"      # 최대 0.25 vCPU
               memory: "512Mi"
-          env:         
+          env:
             - name: DB_HOST
-              value: "10.0.3.50"   
+              value: "10.0.3.50"     # MySQL VM IP -> VIPIP
             - name: DB_PORT
-              value: "3306"       
+              value: "3306"
             - name: DB_NAME
               value: "attendance"
             - name: DB_USER
-              value: "attendance"    
+              value: "attendance"     # 실제 만든 유저명
             - name: DB_PASS
-              value: "1234!"      # App 전용 계정 비밀번호
+              value: "1234"
 
           # "/" 기본 페이지 헬스 체크
           readinessProbe:
@@ -85,6 +85,7 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
+
 
 
 
