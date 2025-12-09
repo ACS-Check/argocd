@@ -53,7 +53,7 @@ spec:
       containers:
         - name: check-nginx
           image: 826854140039.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-cc-nginx:v2.0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:
@@ -85,6 +85,7 @@ spec:
               port: 80
             initialDelaySeconds: 40
             periodSeconds: 20
+
 
 
 
