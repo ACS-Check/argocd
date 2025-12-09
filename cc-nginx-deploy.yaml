@@ -75,16 +75,17 @@ spec:
             httpGet:
               path: /
               port: 80
-            initialDelaySeconds: 20
-            periodSeconds: 5
+            initialDelaySeconds: 40
+            periodSeconds: 20
 
           # 4) Liveness Probe
           livenessProbe:
             httpGet:
               path: /
               port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 40
+            periodSeconds: 20
+
 
 
 
