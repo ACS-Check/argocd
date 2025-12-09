@@ -61,15 +61,15 @@ spec:
               memory: "512Mi"
           env:         
             - name: DB_HOST
-              value: "10.0.3.50"     # ProxySQL Frontend(MySQL) 포트
+              value: "10.0.3.50"   
             - name: DB_PORT
-              value: "6033"          # ProxySQL에서 클라이언트용 MySQL 포트
+              value: "3306"       
             - name: DB_NAME
               value: "attendance"
             - name: DB_USER
-              value: "appuser"       # ProxySQL + MySQL 모두에 생성해둔 App 전용 계정
+              value: "attendance"    
             - name: DB_PASS
-              value: "app1234!"      # App 전용 계정 비밀번호
+              value: "1234!"      # App 전용 계정 비밀번호
 
           # "/" 기본 페이지 헬스 체크
           readinessProbe:
@@ -85,6 +85,7 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
+
 
 
 
