@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: noobalance.store        # 도메인 없으면 임시도메인
+    - host: acs-check.shop       # 도메인 없으면 임시도메인
       http:
         paths:
           - path: /
@@ -30,3 +30,4 @@ spec:
                 name: cc-nginx-svc
                 port:
                   number: 80
+
