@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: cc-tomcat-deploy
   minReplicas: 3           # 기본 3개
-  maxReplicas: 8          # 최대 10개까지
+  maxReplicas: 6          # 최대 6
   metrics:
     - type: Resource
       resource:
@@ -17,3 +17,4 @@ spec:
         target:
           type: Utilization
           averageUtilization: 35   # 파드 평균 CPU 60% 넘으면 증설
+
