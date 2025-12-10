@@ -65,10 +65,17 @@ spec:
               memory: "256Mi"
           
           # ConfigMap으로부터 Nginx 설정 주입
+          # volumeMounts:
+          #   - name: nginx-conf
+          #     mountPath: /etc/nginx/conf.d/default.conf
+          #     subPath: default.conf
+          
           volumeMounts:
             - name: nginx-conf
-              mountPath: /etc/nginx/conf.d/default.conf
+              mountPath: /etc/nginx/http.d/default.conf
               subPath: default.conf
+
+
 
           # 3) Readiness Probe
           readinessProbe:
@@ -85,6 +92,7 @@ spec:
               port: 80
             initialDelaySeconds: 40
             periodSeconds: 20
+
 
 
 
