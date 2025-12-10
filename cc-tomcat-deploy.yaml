@@ -55,10 +55,10 @@ spec:
           resources:
             requests:
               cpu: "300m"      # 최소 보장 0.3 vCPU
-              memory: "500Mi"
+              memory: "512Mi"
             limits:
-              cpu: "600m"      # 최대 0.25 vCPU
-              memory: "800Mi"
+              cpu: "300m"      # 최대 0.25 vCPU
+              memory: "512Mi"
           env:
             - name: DB_HOST
               value: "10.0.3.50"     # MySQL VM IP -> VIPIP
