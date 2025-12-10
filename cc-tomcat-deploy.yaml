@@ -57,7 +57,7 @@ spec:
               cpu: "300m"      # 최소 보장 0.3 vCPU
               memory: "512Mi"
             limits:
-              cpu: "300m"      # 최대 0.3 vCPU
+              cpu: "400m"      # 최대 0.3 vCPU
               memory: "512Mi"
           env:
             - name: DB_HOST
